@@ -38,10 +38,12 @@ const server = new ApolloServer({
 })
 
 // start up ApolloServer
-server.listen({ port: process.env.PORT || 7001 }).then(() => {
+async function startApolloServer(server) {
+  const { url, port } = await server.listen({ port: process.env.PORT || 7001 })
   console.log(`
-      🚀  Server is running!
-      🔉  Listening on port ${port}
-      📭  Query at https://studio.apollographql.com/dev
-    `)
-})
+    🚀  Server is running!
+    🔉  Listening on port ${port}
+    📭  Query at ${url}`)
+}
+
+startApolloServer(server)
