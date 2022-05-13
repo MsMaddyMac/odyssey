@@ -38,10 +38,10 @@ const server = new ApolloServer({
 })
 
 // start up ApolloServer
-server.listen({ port: 7001 }).then(() => {
+server.listen({ port: process.env.PORT || 7001 }).then(() => {
   console.log(`
       🚀  Server is running!
-      🔉  Listening on port 7001
+      🔉  Listening on port ${port}
       📭  Query at https://studio.apollographql.com/dev
     `)
 })
