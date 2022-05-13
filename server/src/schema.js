@@ -4,7 +4,23 @@ const typeDefs = gql`
   type Query {
     "Query to get tracks array for the homepage grid"
     tracksForHome: [Track!]!
-    spaceCats: [SpaceCat]
+    "Query to get a single track by ID"
+    track(id: ID!): Track
+  }
+
+  type Mutation {
+    incrementTrackViews(id: ID!): IncrementTrackViewsResponse!
+  }
+
+  type IncrementTrackViewsResponse {
+    "Similar to HTTP Status code, represents the status of the mutation"
+    code: Int!
+    "Indicates whether the mutation was successful"
+    success: Boolean!
+    "Human-readable message for the UI"
+    message: String!
+    "Newly updated track after a successful mutation"
+    track: Track
   }
 
   "A Track is a group of modules that teaches about a specific topic"
@@ -19,7 +35,22 @@ const typeDefs = gql`
     "the tracks approximate length to completion, in minutes"
     length: Int
     "the number of modules this track contains"
-    modulesCount: Int 
+    modulesCount: Int
+    "the track's complete description, can be in Markdown format"
+    description: String
+    "the number of times a track has been viewed"
+    numberOfViews: Int
+    "The tracks complete array of Modules"
+    modules: [Module!]!
+  }
+
+  "A Module is a single unit of teaching. Multiple Modules compose a Track"
+  type Module {
+    id: ID!
+    "The Module's title"
+    title: String!
+     "The Module's length in minutes"
+    length: Int
   }
 
   type Author {

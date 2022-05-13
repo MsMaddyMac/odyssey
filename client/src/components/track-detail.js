@@ -91,7 +91,7 @@ const TrackDetail = ({ track }) => {
   );
 };
 
-export default TrackDetail;
+export default TrackDetail
 
 /** Track detail styled components */
 const CoverImage = styled.img({
